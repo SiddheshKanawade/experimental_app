@@ -25,6 +25,9 @@ scores_fwd = []
 n_features_bwd = []
 scores_bwd = []
 
+# create a slider for the number of iterations
+iterations_slider = st.slider(min_value=1, max_value=len(n_features_fwd), value=len(n_features_fwd), step=1, label='Iterations:')
+
 # loop through a range of iterations to select a variable number of features
 for i in range(1, 10):
     # create a new instance of the logistic regression model
@@ -66,8 +69,7 @@ def app():
         ax.legend()
         st.pyplot(fig)
 
-    # create a slider for the number of iterations
-    iterations_slider = st.slider(min_value=1, max_value=len(n_features_fwd), value=len(n_features_fwd), step=1, label='Iterations:')
+    
 
     # display the plot
     plot_scores(iterations_slider)
