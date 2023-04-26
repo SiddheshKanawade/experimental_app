@@ -72,7 +72,7 @@ def app():
     # display the plot
     plot_scores(iterations_slider)
 
-  st.write("hello world")
+    st.write("hello world")
 
 # # call the app function
 if __name__ == "__main__":
