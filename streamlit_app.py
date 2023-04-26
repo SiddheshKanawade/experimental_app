@@ -26,7 +26,7 @@ n_features_bwd = []
 scores_bwd = []
 
 # create a slider for the number of iterations
-iterations_slider = st.slider(min_value=1, max_value=20, value=4, step=1, label='Iterations:')
+iterations_slider = st.slider(min_value=1, max_value=20, value=1, step=4, label='Iterations:')
 
 # loop through a range of iterations to select a variable number of features
 for i in range(1, iterations_slider):
