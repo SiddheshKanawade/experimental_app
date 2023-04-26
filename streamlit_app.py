@@ -62,12 +62,12 @@ lr.fit(X, y)
 
 
 # create a sequential forward feature selector
-# sfs = SequentialFeatureSelector(lr, direction='forward', n_features_to_select='auto')
+sfs = SequentialFeatureSelector(lr, direction='forward', n_features_to_select='auto')
 # #sfs.fit(X, y)
 
 # # create a sequential backward feature selector
-# sbs = SequentialFeatureSelector(lr, direction='backward', n_features_to_select='auto')
-# sbs.fit(X, y)
+sbs = SequentialFeatureSelector(lr, direction='backward', n_features_to_select='auto')
+sbs.fit(X, y)
 
 st.balloons()
     #st.write('...and now we\'re done!')
