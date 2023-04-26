@@ -28,6 +28,7 @@ scores_bwd = []
 # loop through a range of iterations to select a variable number of features
 for i in range(1, 10):
     # create a new instance of the logistic regression model
+    st.write(i)
     lr = LogisticRegression()
     sfs = SequentialFeatureSelector(LogisticRegression(), direction='forward', n_features_to_select=i) 
     # fit the sequential forward feature selector
