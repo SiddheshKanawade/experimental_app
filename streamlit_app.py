@@ -68,47 +68,7 @@ sfs = SequentialFeatureSelector(lr, direction='forward', n_features_to_select='a
 # create a sequential backward feature selector
 sbs = SequentialFeatureSelector(lr, direction='backward', n_features_to_select='auto')
 sbs.fit(X, y)
-for i in range(1, 21):
 
-
-
-        # create a new instance of the logistic regression model
-        sfs.n_features_to_select = i
-        #sfs = SequentialFeatureSelector(LogisticRegression(), direction='forward', n_features_to_select=i) 
-        # fit the sequential forward feature selector
-        sfs.fit(X, y)
-        # get the selected features and their corresponding scores
-        selected_features_fwd = sfs.transform(X)
-        lr.fit(selected_features_fwd, y)
-        score_fwd = accuracy_score(y, lr.predict(selected_features_fwd))
-        # append the number of selected features and the corresponding score to the lists
-        n_features_fwd.append(i)
-        scores_fwd.append(score_fwd)
-        st.write(score_fwd)
-
-
-        
-        #time.sleep(0.05)
-
-
-        # create a new instance of the logistic regression model
-        
-      #  sbs = SequentialFeatureSelector(LogisticRegression(), direction='backward', n_features_to_select=i)
-        # fit the sequential backward feature selector
-        sbs.n_features_to_select = i
-      
-        # get the selected features and their corresponding scores
-        selected_features_bwd = sbs.transform(X)
-        sbs.fit(X, y)
-        lr.fit(selected_features_bwd, y)
-        score_bwd = accuracy_score(y, lr.predict(selected_features_bwd))
-        # append the number of selected features and the corresponding score to the lists
-        n_features_bwd.append(i)
-        scores_bwd.append(score_bwd)
-        st.write(score_bwd)
-
-
-        bar.progress(i+20)
 st.balloons()
     #st.write('...and now we\'re done!')
 st.success('Done!')
@@ -140,4 +100,43 @@ if __name__ == '__main__':
 
     # use the interact function to link the slider to the plot
         interact(plot_scores, n=iterations_slider)
+        for i in range(1, iterations_slider):
+
+            # create a new instance of the logistic regression model
+            sfs.n_features_to_select = i
+            #sfs = SequentialFeatureSelector(LogisticRegression(), direction='forward', n_features_to_select=i) 
+            # fit the sequential forward feature selector
+            sfs.fit(X, y)
+            # get the selected features and their corresponding scores
+            selected_features_fwd = sfs.transform(X)
+            lr.fit(selected_features_fwd, y)
+            score_fwd = accuracy_score(y, lr.predict(selected_features_fwd))
+            # append the number of selected features and the corresponding score to the lists
+            n_features_fwd.append(i)
+            scores_fwd.append(score_fwd)
+            st.write(score_fwd)
+
+
+
+            #time.sleep(0.05)
+
+
+            # create a new instance of the logistic regression model
+
+          #  sbs = SequentialFeatureSelector(LogisticRegression(), direction='backward', n_features_to_select=i)
+            # fit the sequential backward feature selector
+            sbs.n_features_to_select = i
+
+            # get the selected features and their corresponding scores
+            selected_features_bwd = sbs.transform(X)
+            sbs.fit(X, y)
+            lr.fit(selected_features_bwd, y)
+            score_bwd = accuracy_score(y, lr.predict(selected_features_bwd))
+            # append the number of selected features and the corresponding score to the lists
+            n_features_bwd.append(i)
+            scores_bwd.append(score_bwd)
+            st.write(score_bwd)
+
+
+            bar.progress(i+20)
 
