@@ -69,9 +69,38 @@ def app():
 
     # create a slider for the number of iterations
     iterations_slider = st.slider(min_value=1, max_value=len(n_features_fwd), value=len(n_features_fwd), step=1, label='Iterations:')
+    
+    # loop through a range of iterations to select a variable number of features
+    for i in range(1, iterations_slider):
+        # create a new instance of the logistic regression model
+        st.write(i)
+        lr = LogisticRegression()
+        sfs = SequentialFeatureSelector(LogisticRegression(), direction='forward', n_features_to_select=i) 
+        # fit the sequential forward feature selector
+        sfs.fit(X, y)
+        # get the selected features and their corresponding scores
+        selected_features_fwd = sfs.transform(X)
+        lr.fit(selected_features_fwd, y)
+        score_fwd = accuracy_score(y, lr.predict(selected_features_fwd))
+        # append the number of selected features and the corresponding score to the lists
+        n_features_fwd.append(i)
+        scores_fwd.append(score_fwd)
 
-    # display the plot
-    plot_scores(iterations_slider)
+        # create a new instance of the logistic regression model
+        lr = LogisticRegression()
+        sbs = SequentialFeatureSelector(LogisticRegression(), direction='backward', n_features_to_select=i)
+        # fit the sequential backward feature selector
+        sbs.fit(X, y)
+        # get the selected features and their corresponding scores
+        selected_features_bwd = sbs.transform(X)
+        lr.fit(selected_features_bwd, y)
+        score_bwd = accuracy_score(y, lr.predict(selected_features_bwd))
+        # append the number of selected features and the corresponding score to the lists
+        n_features_bwd.append(i)
+        scores_bwd.append(score_bwd)
+        # display the plot
+        plot_scores(iterations_slider)
+    
 
     st.write("hello world")
 
