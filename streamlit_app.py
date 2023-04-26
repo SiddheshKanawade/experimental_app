@@ -100,7 +100,7 @@ if __name__ == '__main__':
 
     # use the interact function to link the slider to the plot
         interact(plot_scores, n=iterations_slider)
-        for i in range(1, iterations_slider):
+        for i in range(0, iterations_slider):
 
             # create a new instance of the logistic regression model
             sfs.n_features_to_select = i
