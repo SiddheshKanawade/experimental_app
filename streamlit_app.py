@@ -29,7 +29,7 @@ scores_bwd = []
 iterations_slider = st.slider(min_value=1, max_value=len(n_features_fwd), value=len(n_features_fwd), step=1, label='Iterations:')
 
 # loop through a range of iterations to select a variable number of features
-for i in range(1, 10):
+for i in range(1, iterations_slider):
     # create a new instance of the logistic regression model
     lr = LogisticRegression()
     sfs = SequentialFeatureSelector(LogisticRegression(), direction='forward', n_features_to_select=i) 
