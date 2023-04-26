@@ -104,7 +104,7 @@ if __name__ == '__main__':
 
             # create a new instance of the logistic regression model
             sfs.n_features_to_select = i
-            #sfs = SequentialFeatureSelector(LogisticRegression(), direction='forward', n_features_to_select=i) 
+            sfs = SequentialFeatureSelector(LogisticRegression(), direction='forward', n_features_to_select=i) 
             # fit the sequential forward feature selector
             sfs.fit(X, y)
             # get the selected features and their corresponding scores
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
             # create a new instance of the logistic regression model
 
-          #  sbs = SequentialFeatureSelector(LogisticRegression(), direction='backward', n_features_to_select=i)
+            sbs = SequentialFeatureSelector(LogisticRegression(), direction='backward', n_features_to_select=i)
             # fit the sequential backward feature selector
             sbs.n_features_to_select = i
 
@@ -136,6 +136,8 @@ if __name__ == '__main__':
             n_features_bwd.append(i)
             scores_bwd.append(score_bwd)
             st.write(score_bwd)
+            
+            
 
 
             bar.progress(i+20)
